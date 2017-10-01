@@ -13,15 +13,15 @@
 #include <vector>
 
 #define GLEW_STATIC
-#include <GL\glew.h>
+#include <GL/glew.h>
 
 #include <SDL.h>
 #include <SDL_opengl.h>
-#include <GL\GLU.h>
-#include <SOIL.h>
+#include <GL/glu.h>
+#include <SOIL/SOIL.h>
 
 #include <openvr.h>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 using namespace std;
 using namespace vr;

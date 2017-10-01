@@ -7,7 +7,7 @@
 #include "scene_manager.h"
 
 #include <string>
-#include <gtc/matrix_transform.hpp> // Needed for importing GLM Extensions (including matrix transformations, etc)
+#include <glm/gtc/matrix_transform.hpp> // Needed for importing GLM Extensions (including matrix transformations, etc)
 									// To solve the issue reggarding the error LNK2001: símbolo externo "public: __thiscall glm::tvec4<float,0>::tvec4<float,0>(struct glm::tvec4<float,0> const &)" (??0?$tvec4@M$0A@@glm@@QAE@ABU01@@Z) sin resolver
 									// The solution is here (adding a little code to setup.hpp): https://github.com/g-truc/glm/issues/377
 
@@ -53,14 +53,14 @@ int SceneManager::init() {
 		render_models[nDevice] = NULL;
 	}
 
-	scene_shader = new Shader(".\\.\\src\\scene_shader.vert",".\\.\\src\\scene_shader.frag","");
-	screen_shader = new Shader(".\\.\\src\\screen_shader.vert",".\\.\\src\\screen_shader.frag","");
-	render_model_shader = new Shader(".\\.\\src\\render_model_shader.vert",".\\.\\src\\render_model_shader.frag","");
+	scene_shader = new Shader("src/scene_shader.vert","src/scene_shader.frag","");
+	screen_shader = new Shader("src/screen_shader.vert","src/screen_shader.frag","");
+	render_model_shader = new Shader("src/render_model_shader.vert","src/render_model_shader.frag","");
 
 	m_strDriver = "No Driver";
 	m_strDisplay = "No Display";
 
-	if ((initSDL() == -1) || (initOpenGL() == -1) || (initOpenVR() == -1))
+	if ((initSDL() == -1) || (initOpenGL() == -1) /*|| (initOpenVR() == -1)*/)
 		return -1;
 
 	return 0;
@@ -433,7 +433,7 @@ int SceneManager::initOpenVR() {
 	{
 		vr::VR_Shutdown();
 		cout << "Couldn't load generic render models" << endl;
-		return -1;
+		//return -1;
 	}
 	else
 		cout << "Render models loaded successfully" << endl;
@@ -567,7 +567,7 @@ int SceneManager::initOpenGL() {
 
     if((error = glGetError()) != GL_NO_ERROR)
     {
-        cout << "Error initializing OpenGL!" << gluErrorString(error) << endl;
+        cout << "Error initializing OpenGL!" << /*gluErrorString(error) <<*/ endl;
 		return -1;
     }
 
